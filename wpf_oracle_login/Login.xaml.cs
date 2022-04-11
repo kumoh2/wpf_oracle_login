@@ -31,35 +31,35 @@ namespace WpfApp1
                                             +"WHERE USR_ID = '{0}'",id_textbox.Text);
             using (OracleConnection conn = new OracleConnection(ConString))
             {
-                    OracleCommand cmd = new OracleCommand(CmdString, conn);
-                    conn.Open();
+                OracleCommand cmd = new OracleCommand(CmdString, conn);
+                conn.Open();
 
-                    if (id_textbox.Text == "" || pw_textbox.Password == "")
+                if (id_textbox.Text == "" || pw_textbox.Password == "")
+                {
+                    MessageBox.Show("ID 또는Password를입력하세요...");
+                    return;
+                }
+
+                using (OracleDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
                     {
-                        MessageBox.Show("ID 또는Password를입력하세요...");
+                        if (pw_textbox.Password != reader["pwd"].ToString())
+                        {
+                            MessageBox.Show("Password가맞지않습니다...");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("등록되지않은ID 입니다.");
                         return;
                     }
 
-                    using (OracleDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            if (pw_textbox.Password != reader["pwd"].ToString())
-                            {
-                                MessageBox.Show("Password가맞지않습니다...");
-                                return;
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("등록되지않은ID 입니다.");
-                            return;
-                        }
+                    Window mainwindow1 = new Window();
 
-                        Window mainwindow1 = new Window();
-
-                        GetWindow(this).Close();
-                        mainwindow1.ShowDialog();
+                    GetWindow(this).Close();
+                    mainwindow1.ShowDialog();
                 }      
             }
         }
@@ -71,7 +71,7 @@ namespace WpfApp1
 
         private void Exit_Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            Environment.Exit(0);
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
