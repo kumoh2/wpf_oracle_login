@@ -27,8 +27,8 @@ namespace WpfApp1
         private void Login_conn()
         {
             string ConString = "Data Source=localhost;User ID=scott;Password=tiger";
-            string CmdString = string.Format("SELECT PWD FROM Z_USR_MAST_REC"
-                                            +"WHERE USR_ID = '{0}'",id_textbox);
+            string CmdString = string.Format("SELECT PWD FROM Z_USR_MAST_REC" + " "
+                                            +"WHERE USR_ID = '{0}'",id_textbox.Text);
             using (OracleConnection conn = new OracleConnection(ConString))
             {
                 OracleCommand cmd = new OracleCommand(CmdString, conn);
