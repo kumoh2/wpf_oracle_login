@@ -34,7 +34,7 @@ namespace WpfApp1
                 OracleCommand cmd = new OracleCommand(CmdString, conn);
                 conn.Open();
 
-                if (id_textbox.Text == "" || pw_textbox.Text == "")
+                if (id_textbox.Text == "" || pw_textbox.Password == "")
                 {
                     MessageBox.Show("ID 또는Password를입력하세요...");
                     return;
@@ -44,7 +44,7 @@ namespace WpfApp1
                 {
                     if (reader.Read())
                     {
-                        if (pw_textbox.Text != reader["pwd"].ToString())
+                        if (pw_textbox.Password != reader["pwd"].ToString())
                         {
                             MessageBox.Show("Password가맞지않습니다...");
                             return;
