@@ -27,20 +27,35 @@ namespace WpfApp1
         private void Login_conn()
         {
             string ConString = "Data Source=localhost;User ID=scott;Password=tiger";
-            string CmdString = string.Format("SELECT * FROM Z_USR_MAST_REC"); ;
+            string CmdString = string.Format("SELECT PWD FROM Z_USR_MAST_REC"
+                                            +"WHERE USR_ID = '{0}'",id_textbox);
             using (OracleConnection conn = new OracleConnection(ConString))
             {
                 OracleCommand cmd = new OracleCommand(CmdString, conn);
                 conn.Open();
+
+                if (id_textbox.Text == "" || pw_textbox.Text == "")
+                {
+                    MessageBox.Show("ID 또는Password를입력하세요...");
+                    return;
+                }
+
                 using (OracleDataReader reader = cmd.ExecuteReader())
                 {
-                    //// Always call Read before accessing data.
-                    //String s = "";
-                    //while (reader.Read())
-                    //{
-                    //    s += reader[0].ToString();
-                    //    MessageBox.Show(s);
-                    //}
+                    if (reader.Read())
+                    {
+                        if (pw_textbox.Text != reader["pwd"].ToString())
+                        {
+                            MessageBox.Show("Password가맞지않습니다...");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("등록되지않은ID 입니다.");
+                        return;
+                    }
+
                 }
             }
         }
