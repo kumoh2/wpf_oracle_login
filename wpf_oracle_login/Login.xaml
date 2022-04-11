@@ -15,7 +15,7 @@
         <Label Content="아이디" Margin="39,14,0,0" RenderTransformOrigin="0.855,0.086" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <Label Content="비밀번호" Margin="27,50,0,0" RenderTransformOrigin="0.855,0.086" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <TextBox x:Name="id_textbox" Margin="106,14,0,0" TextWrapping="Wrap" RenderTransformOrigin="0.5,0.567" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="135"/>
-        <TextBox x:Name="pw_textbox" Margin="106,52,0,0" TextWrapping="Wrap" RenderTransformOrigin="0.5,0.567" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="135"/>
+        <PasswordBox x:Name="pw_textbox" Margin="106,52,0,0" RenderTransformOrigin="0.5,0.567" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="135"/>
         <Button Content="로그인" Margin="270,12,0,0" Click="Login_Button_Click" Height="64" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80"/>
         <Button Content="회원가입" Margin="18,86,0,0" Click="Login_Button_Click" Height="20" VerticalAlignment="Top" Width="75" HorizontalAlignment="Left" />
         <Button Content="비밀번호찾기" Margin="104,86,0,0" Click="Login_Button_Click" Height="20" VerticalAlignment="Top" FontSize="10" Width="75" HorizontalAlignment="Left"/>
