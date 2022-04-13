@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Oracle.ManagedDataAccess.Client;
 
 namespace wpf_oracle_login
 {
@@ -19,6 +20,19 @@ namespace wpf_oracle_login
     /// </summary>
     public partial class SignUp : Window
     {
+        string ConString = "Data Source=localhost;User ID=scott;Password=tiger";
+
+        private void Login_conn()
+        {
+
+            string cmdString = "SELECT PWD FROM Z_USR_MAST_REC" + " " + 
+                               $"WHERE USR_ID = ''";
+            using OracleConnection conn = new OracleConnection(ConString);
+            OracleCommand cmd = new OracleCommand(cmdString, conn);
+            conn.Open();
+
+        }
+
         public SignUp()
         {
             InitializeComponent();
