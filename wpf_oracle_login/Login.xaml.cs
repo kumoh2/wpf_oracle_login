@@ -44,10 +44,10 @@ namespace wpf_oracle_login
                 return;
             }
 
-            Window mainwindow1 = new Window();
+            wpf_oracle_login.Login testwindow = new wpf_oracle_login.Login();
 
             GetWindow(this)?.Close();
-            mainwindow1.ShowDialog();
+            testwindow.ShowDialog();
         }
 
         private void Login_Button_Click(object sender, System.Windows.RoutedEventArgs e)
