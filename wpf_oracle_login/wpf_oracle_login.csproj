@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <AssemblyName>wpf_oracle_login</AssemblyName>
     <RootNamespace>wpf_oracle_login</RootNamespace>
+    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
