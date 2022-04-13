@@ -27,41 +27,36 @@ namespace WpfApp1
         private void Login_conn()
         {
             string ConString = "Data Source=localhost;User ID=scott;Password=tiger";
-            string CmdString = string.Format("SELECT PWD FROM Z_USR_MAST_REC" + " "
-                                            +"WHERE USR_ID = '{0}'",id_textbox.Text);
-            using (OracleConnection conn = new OracleConnection(ConString))
-            {
-                OracleCommand cmd = new OracleCommand(CmdString, conn);
-                conn.Open();
+            string cmdString = "SELECT PWD FROM Z_USR_MAST_REC" + " " + $"WHERE USR_ID = '{id_textbox.Text}'";
+            using OracleConnection conn = new OracleConnection(ConString);
+            OracleCommand cmd = new OracleCommand(cmdString, conn);
+            conn.Open();
 
-                if (id_textbox.Text == "" || pw_textbox.Password == "")
+            if (id_textbox.Text == "" || pw_textbox.Password == "")
+            {
+                MessageBox.Show("ID 또는Password를입력하세요...");
+                return;
+            }
+
+            using OracleDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                if (pw_textbox.Password != reader["pwd"].ToString())
                 {
-                    MessageBox.Show("ID 또는Password를입력하세요...");
+                    MessageBox.Show("Password가맞지않습니다...");
                     return;
                 }
-
-                using (OracleDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        if (pw_textbox.Password != reader["pwd"].ToString())
-                        {
-                            MessageBox.Show("Password가맞지않습니다...");
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("등록되지않은ID 입니다.");
-                        return;
-                    }
-
-                    Window mainwindow1 = new Window();
-
-                    GetWindow(this).Close();
-                    mainwindow1.ShowDialog();
-                }      
             }
+            else
+            {
+                MessageBox.Show("등록되지않은ID 입니다.");
+                return;
+            }
+
+            Window mainwindow1 = new Window();
+
+            GetWindow(this)?.Close();
+            mainwindow1.ShowDialog();
         }
 
         private void Login_Button_Click(object sender, System.Windows.RoutedEventArgs e)
