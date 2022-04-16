@@ -46,7 +46,7 @@ namespace wpf_oracle_login
                 return;
             }
 
-            wpf_oracle_login.Login testwindow = new wpf_oracle_login.Login();
+            wpf_oracle_login.MainWindow testwindow = new wpf_oracle_login.MainWindow();
 
             GetWindow(this)?.Close();
             testwindow.ShowDialog();
