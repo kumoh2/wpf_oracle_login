@@ -19,8 +19,8 @@ namespace wpf_oracle_login
 
         private void Login_conn()
         {
-            string cmdString = "SELECT PWD FROM Z_USR_MAST_REC" + " "
-                            + $"WHERE USR_ID = '{IdTextbox.Text}'";
+            string cmdString = "SELECT PWD FROM Z_USR_MAST_REC" + " "  
+                            + $"WHERE USR_ID = '{IdTextbox.Text}'";  
             using OracleConnection conn = new OracleConnection(ConString);
             OracleCommand cmd = new OracleCommand(cmdString, conn);
             conn.Open();
