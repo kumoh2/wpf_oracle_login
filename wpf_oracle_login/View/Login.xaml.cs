@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using static wpf_oracle_login.Conn.OraConn;
+using static wpf_oracle_login.DBConn.OraConn;
 
 namespace wpf_oracle_login
 {

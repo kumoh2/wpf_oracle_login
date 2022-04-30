@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static wpf_oracle_login.DBConn.OraConn;
+
 
 namespace wpf_oracle_login
 {
@@ -19,8 +21,10 @@ namespace wpf_oracle_login
     /// </summary>
     public partial class SignUp : Window
     {
+        get_conn();
 
-
+        string cmdString = "SELECT PWD FROM Z_USR_MAST_REC" + " " +
+                           $"WHERE USR_ID = ''";
 
         public SignUp()
         {
