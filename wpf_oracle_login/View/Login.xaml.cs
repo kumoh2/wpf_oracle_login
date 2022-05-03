@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using Oracle.ManagedDataAccess.Client;
+using static wpf_oracle_login.DBConn.OraConn;
 
 namespace wpf_oracle_login
 {
@@ -19,8 +19,8 @@ namespace wpf_oracle_login
 
         private void Login_conn()
         {
-            string cmdString = "SELECT PWD FROM Z_USR_MAST_REC" + " "
-                            + $"WHERE USR_ID = '{IdTextbox.Text}'";
+            string cmdString = "SELECT PWD FROM Z_USR_MAST_REC" + " "  
+                            + $"WHERE USR_ID = '{IdTextbox.Text}'";  
             using OracleConnection conn = new OracleConnection(ConString);
             OracleCommand cmd = new OracleCommand(cmdString, conn);
             conn.Open();
@@ -46,7 +46,7 @@ namespace wpf_oracle_login
                 return;
             }
 
-            wpf_oracle_login.Login testwindow = new wpf_oracle_login.Login();
+            wpf_oracle_login.MainWindow testwindow = new wpf_oracle_login.MainWindow();
 
             GetWindow(this)?.Close();
             testwindow.ShowDialog();
