@@ -46,10 +46,10 @@ namespace wpf_oracle_login
                 return;
             }
 
-            wpf_oracle_login.Login testwindow = new wpf_oracle_login.Login();
+            Window mainwindow1 = new Window();
 
             GetWindow(this)?.Close();
-            testwindow.ShowDialog();
+            mainwindow1.ShowDialog();
         }
 
         private void SignUp_window_open()
